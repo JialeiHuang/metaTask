@@ -18,10 +18,21 @@ from django.urls import path
 from django.conf.urls import include, url
 from django.views.generic.base import TemplateView
 from django.http import HttpResponse
-from django.shortcuts import render,render_to_response
+from metatask import views
+#from django.shortcuts import render,render_to_response
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(regex='^$', view=lambda request: 
     TemplateView.as_view(template_name='new_file.html')),
-    url('api/666', view=lambda e: HttpResponse('戏说不是胡说'))]
+    url('api/666', view=lambda e: HttpResponse('戏说不是胡说')),
+    path('register', views.register),
+    path('login', views.login),
+    path('getUserInformation', views.getUserInformation),
+    path('uploadHeadImg', views.uploadHeadImg),
+    path('getHeadImg', views.getHeadImg),
+    path('getGroupInformation', views.getGroupInformation),
+    path('modifyUserInformation', views.modifyUserInformation),
+
+]
+
