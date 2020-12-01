@@ -52,7 +52,7 @@ def new_todolist(request):
             # create default todolist
             user = request.user if request.user.is_authenticated else None
             # print(request.title)
-            import ipdb; ipdb.set_trace()
+            # import ipdb; ipdb.set_trace()
             todolist = TodoList(creator=user)
             todolist.save()
             todo = Todo(
