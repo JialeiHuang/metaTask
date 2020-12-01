@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include, url
+from django.views.generic.base import TemplateView
+from django.http import HttpResponse
+from django.shortcuts import render,render_to_response
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    url(regex='^$', view=lambda request: 
+    TemplateView.as_view(template_name='new_file.html')),
+    url('api/666', view=lambda e: HttpResponse('戏说不是胡说'))]
