@@ -23,8 +23,6 @@ from metatask import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(regex='^$', view=lambda request: 
-    TemplateView.as_view(template_name='new_file.html')),
     url('api/666', view=lambda e: HttpResponse('戏说不是胡说')),
     path('register', views.register),
     path('login', views.login),
@@ -35,4 +33,3 @@ urlpatterns = [
     path('modifyUserInformation', views.modifyUserInformation),
 
 ]
-
