@@ -10,6 +10,7 @@ def index(request):
     return render(request, "lists/index.html", {"form": TodoForm()})
 
 
+
 def todolist(request, todolist_id):
     todolist = get_object_or_404(TodoList, pk=todolist_id)
     if request.method == "POST":
