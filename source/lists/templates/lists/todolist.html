@@ -18,16 +18,24 @@
         {{ form }}
         <input type="submit" value="Submit">
       </form>
-    </div>
+        </div>
     <div class="row">
-      <div class="three column open-todos">
-        <h6 class="docs-header open-todos">{{ todolist.count_open }} Tasks</h6>
+      <div class="one-half column open-todos">
+        <h6 class="docs-header open-todos">{{ todolist.count_open }} To be done</h6>
         <ul>
           {% for todo in todolist.todos.all %}
             {% if not todo.is_finished %}
-                <center>
               <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}"> {{ todo.description }}</li>
-                </center>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="one-half column finished-todos">
+        <h6 class="docs-header finished-todos">{{ todolist.count_finished }} done</h6>
+        <ul>
+          {% for todo in todolist.todos.all %}
+            {% if todo.is_finished %}
+            <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}" checked="checked"> {{ todo.description }}</li>
             {% endif %}
           {% endfor %}
         </ul>

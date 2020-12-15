@@ -17,7 +17,8 @@
   {% load static %}
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+  <link rel="stylesheet" type='text/css'
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
   <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" type='text/css' href="{% static 'css/custom.css' %}">
   {% block css %}{% endblock %}
@@ -42,25 +43,36 @@
       <div class="container">
         <ul class="navbar-list">
           <li class="navbar-item"><a class="navbar-link" href="{% url 'lists:index' %}">Metatask</a></li>
-            <!--add by jialei -->
-          <li class="navbar-item"><a class="navbar-link" href="{% url 'lists:group' %}", style="text-align:center;">Group</a></li>
+          <!--add by jialei -->
+          <!--
+          <form action="{% url 'lists:new_grouplist' %}" method=post>
+          </form>
+          {% if user.is_authenticated %}
+          {% for grouplist in user.grouplist.all %}
+          <li class="navbar-item"><a class="navbar-link" href="{% url 'lists:grouplist' grouplist_id=grouplist.id %}" ,
+              style="text-align:center;">Group</a></li>
+          {% endfor %}
+          {% endif %}
+          -->
           {% if not user.is_authenticated %}
           <li class="navbar-item">
-            <a class="navbar-link" href="{% url 'auth:login' %}">Login</a> {% else %}
-            <li class="navbar-item">
-              <a class="navbar-link" href="#" data-popover="#moreNavPopover">{{ user.username }}</a>
-              <div id="moreNavPopover" class="popover">
-                <ul class="popover-list">
-                  <li class="popover-item">
-                    <a class="popover-link" href="{% url 'lists:overview' %}">Your Todolists</a>
-                  </li>
-                  <li class="popover-item">
-                    <a class="popover-link" href="{% url 'auth:logout' %}">logout</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            {% endif %}
+            <a class="navbar-link" href="{% url 'auth:login' %}">Login</a>
+          </li>
+          {% else %}
+          <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#moreNavPopover">{{ user.username }}</a>
+            <div id="moreNavPopover" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="{% url 'lists:overview' %}">Your Todolists</a>
+                </li>
+                <li class="popover-item">
+                  <a class="popover-link" href="{% url 'auth:logout' %}">logout</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
