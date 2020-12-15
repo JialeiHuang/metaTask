@@ -52,14 +52,8 @@ def new_todolist(request):
         if form.is_valid():
             # create default todolist
             user = request.user if request.user.is_authenticated else None
-            todolist = TodoList(creator=user)
+            todolist = TodoList(creator=user, title=request.POST['description'])
             todolist.save()
-            todo = Todo(
-                description=request.POST["description"],
-                todolist_id=todolist.id,
-                creator=user,
-            )
-            todo.save()
             return redirect("lists:todolist", todolist_id=todolist.id)
         else:
             return render(request, "lists/index.html", {"form": form})
