@@ -10,4 +10,9 @@ urlpatterns = [
     path("todolist/add/", views.add_todolist, name="add_todolist"),
     path("todo/add/<int:todolist_id>/", views.add_todo, name="add_todo"),
     path("todolists/", views.overview, name="overview"),
+
+    path("grouplist/<int:grouplist_id>/", views.grouplist, name="grouplist"),
+    path("grouplist/new/", views.new_grouplist, name="new_grouplist"),
+    path("grouplist/add/", views.add_grouplist, name="add_grouplist"),
+    path("group/add/<int:grouplist_id>/", views.add_group, name="add_group"),
 ]

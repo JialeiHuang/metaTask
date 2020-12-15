@@ -15,11 +15,27 @@ class TodoForm(forms.Form):
     )
 
 
+class GroupForm(forms.Form):
+    description = forms.CharField(
+        **form_kwargs(widget=forms.TextInput(attrs=widget_attrs("Enter your group")))
+    )
+
+
 class TodoListForm(forms.Form):
     title = forms.CharField(
         **form_kwargs(
             widget=forms.TextInput(
                 attrs=widget_attrs("Enter a title to start a new todolist")
+            )
+        )
+    )
+
+
+class GroupListForm(forms.Form):
+    title = forms.CharField(
+        **form_kwargs(
+            widget=forms.TextInput(
+                attrs=widget_attrs("Enter a title to start a new grouplist")
             )
         )
     )
