@@ -101,6 +101,18 @@ def add_group(request, grouplist_id):
             return render(request, "lists/grouplist.html", {"form": form})
 
     return redirect("lists:index")
+# # only one useful
+# def join_group(request, grouplist_id):
+#     if request.method == "POST":
+#         form = GroupForm(request.POST)
+#         if form.is_valid():
+#             user = request.user if request.user.is_authenticated else None
+             
+#             return redirect("lists:grouplist", grouplist_id=grouplist_id)
+#         else:
+#             return render(request, "lists/grouplist.html", {"form": form})
+
+#     return redirect("lists:index")
 
 
 def new_grouplist(request):

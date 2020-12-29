@@ -9,6 +9,9 @@ class TodoList(models.Model):
     creator = models.ForeignKey(
         User, null=True, related_name="todolists", on_delete=models.CASCADE
     )
+    # members = models.CharField(
+    #     max_length=128,default="tianxing"
+    # )
 
     class Meta:
         ordering = ("created_at",)

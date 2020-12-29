@@ -13,6 +13,7 @@
     <div class="three columns value-prop"></div>
     <div class="six columns">
       <div class="title">{{todolist.title}}</div>
+      <div class="creator">creator and members: {{todolist.creator}}</div>
       <form action="{% url 'lists:add_todo' todolist.id %}" method=post>
         {% csrf_token %}
         {{ form }}

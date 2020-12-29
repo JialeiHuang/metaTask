@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 {% block body %}
 <section class="header">
-  <h2 class="title">Todolist overview</h2>
+  <h2 class="title">Groups overview</h2>
   <div class="row">
     <div class="three columns value-prop"></div>
     <div class="six columns">
@@ -45,10 +45,11 @@ $(document).ready(function() {
       <table id="todolist-overview-table" class="tablesorter">
         <thead>
           <tr>
-            <th class='todolist-title'>Todolist title</th>
+            <th class='todolist-title'>Group name</th>
             <th># To Be Done</th>
             <th># Done</th>
             <th class="datetime">Created at</th>
+            <th>Creator</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@ $(document).ready(function() {
             <td>{{ todolist.count_open }}</td>
             <td>{{ todolist.count_finished }}</td>
             <td data-time-in-seconds="{{ todolist.created_at|in_seconds }}">{{ todolist.created_at|humanize }}</td>
+            <td>{{ todolist.creator }}</td>
           </tr>
           {% endfor %}
         </tbody>
