@@ -10,7 +10,7 @@
         {% csrf_token %}
         <dl>
           <dd>{{ form }}
-          <dt><input type="submit" class="button button-primary" value="Register">
+          <dt><input type="submit" class="button button-primary" value="Register" style="background-color: #000000;border-color: #000000;">
         </dl>
       </form>
       <p>Already registerd? <a href="{% url 'auth:login' %}">Click here to login</a>.</p>

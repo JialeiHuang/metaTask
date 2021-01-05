@@ -2,12 +2,14 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
+from django.contrib import messages
+
 from lists.forms import TodoForm, TodoListForm, GroupForm, GroupListForm
 from lists.models import Todo, TodoList, Group, GroupList
 
-
 def index(request):
-    return render(request, "lists/index.html", {"form": TodoForm()})
+    return render(request, "lists/index.html", {"form": TodoListForm()})
+    #return render(request, "lists/index.html", {"form": TodoForm()})
    # return render(request, "lists/base.html", {"form": TodoForm()})
 
 
@@ -28,6 +30,7 @@ def add_todo(request, todolist_id):
             user = request.user if request.user.is_authenticated else None
             todo = Todo(
                 description=request.POST["description"],
+                title=request.POST["title"],
                 todolist_id=todolist_id,
                 creator=user,
             )
@@ -48,15 +51,20 @@ def overview(request):
 
 def new_todolist(request):
     if request.method == "POST":
-        form = TodoForm(request.POST)
+        form = TodoListForm(request.POST)
+        print("#"*40)
+        print(form)
+        print("#"*40)
+        print(request.POST)
         if form.is_valid():
             # create default todolist
             user = request.user if request.user.is_authenticated else None
-            todolist = TodoList(creator=user, title=request.POST['description'])
+            print(request)
+            todolist = TodoList(creator=user, title=request.POST['title'])
             todolist.save()
             return redirect("lists:todolist", todolist_id=todolist.id)
         else:
-            return render(request, "lists/index.html", {"form": form})
+            return render(request, "lists/index.html", {"form": TodoListForm})
 
     return redirect("lists:index")
 
@@ -70,7 +78,7 @@ def add_todolist(request):
             todolist.save()
             return redirect("lists:todolist", todolist_id=todolist.id)
         else:
-            return render(request, "lists/overview.html", {"form": form})
+            return render(request, "lists/overview.html", {"form": TodoListForm})
 
     return redirect("lists:index")
 

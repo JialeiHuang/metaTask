@@ -13,10 +13,10 @@
     <div class="three columns value-prop"></div>
     <div class="six columns">
       <div class="title">{{todolist.title}}</div>
-      <div class="creator">creator and members: {{todolist.creator}}</div>
+      <div class="creator">creator and members: {{todolist.creator}} , tianxing</div>
       <form action="{% url 'lists:add_todo' todolist.id %}" method=post>
         {% csrf_token %}
-        {{ form }}
+        <dd>{{ form }}</dd>
         <input type="submit" value="Submit">
       </form>
         </div>
@@ -26,7 +26,7 @@
         <ul>
           {% for todo in todolist.todos.all %}
             {% if not todo.is_finished %}
-              <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}"> {{ todo.description }}</li>
+              <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}"> {{todo.title}}: {{ todo.description }} </li>
             {% endif %}
           {% endfor %}
         </ul>
